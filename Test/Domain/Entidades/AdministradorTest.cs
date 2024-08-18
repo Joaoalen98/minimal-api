@@ -6,7 +6,7 @@ namespace Test.Domain.Entidades;
 public class AdministradorTest
 {
     [TestMethod]
-    public void TestarGetSetPropriedades()
+    public void TestarGetSetPropriedades_EntidadeAdministrador()
     {
         // Arrange
         var adm = new Administrador();

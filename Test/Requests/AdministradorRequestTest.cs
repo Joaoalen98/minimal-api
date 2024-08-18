@@ -10,6 +10,7 @@ namespace Test.Requests;
 [TestClass]
 public class AdministradorRequestTest
 {
+
     [ClassInitialize]
     public static void ClassInit(TestContext testContext)
     {
@@ -21,17 +22,18 @@ public class AdministradorRequestTest
     {
         Setup.ClassCleanup();
     }
-    
+
     [TestMethod]
-    public async Task TestarGetSetPropriedades()
+    public async Task TestarGetSetPropriedades_RequestAdministrador()
     {
         // Arrange
-        var loginDTO = new LoginDTO{
+        var loginDTO = new LoginDTO
+        {
             Email = "adm@teste.com",
             Senha = "123456"
         };
 
-        var content = new StringContent(JsonSerializer.Serialize(loginDTO), Encoding.UTF8,  "Application/json");
+        var content = new StringContent(JsonSerializer.Serialize(loginDTO), Encoding.UTF8, "Application/json");
 
         // Act
         var response = await Setup.client.PostAsync("/administradores/login", content);
