@@ -22,7 +22,10 @@ public class AdministradorServicoTest
 
         var configuration = builder.Build();
 
-        return new DbContexto(configuration);
+        var context = new DbContexto(configuration);
+        context.Database.Migrate();
+
+        return context;
     }
 
 
