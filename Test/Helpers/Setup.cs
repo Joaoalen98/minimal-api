@@ -16,12 +16,13 @@ public class Setup
     public static void ClassInit(TestContext testContext)
     {
         Setup.testContext = testContext;
-        Setup.http = new WebApplicationFactory<Startup>();
+        http = new WebApplicationFactory<Startup>();
 
-        Setup.http = Setup.http.WithWebHostBuilder(builder =>
+        http = http.WithWebHostBuilder(builder =>
         {
-            builder.UseSetting("https_port", Setup.PORT).UseEnvironment("Testing");
-            
+            builder.UseSetting("https_port", PORT).UseEnvironment("Testing");
+            builder.UseConfiguration(ConfigurationHelper.GetConfiguration());
+
             builder.ConfigureServices(services =>
             {
                 services.AddScoped<IAdministradorServico, AdministradorServicoMock>();
@@ -29,11 +30,11 @@ public class Setup
 
         });
 
-        Setup.client = Setup.http.CreateClient();
+        client = http.CreateClient();
     }
 
     public static void ClassCleanup()
     {
-        Setup.http.Dispose();
+        http.Dispose();
     }
 }
